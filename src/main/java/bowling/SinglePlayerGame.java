@@ -27,13 +27,17 @@ public class SinglePlayerGame {
 	 */
 	public void lancer(int nombreDeQuillesAbattues) {
             if(this.tour <= this.tourLimite){
-                if(this.strike > 0){ //Si un strike a été fait lors des deux derniers lancers, on double le score de ce lancer
+                if(this.strike >= 6){
+                    this.scoreTotal += nombreDeQuillesAbattues*2;
+                    this.strike-=2;
+                }
+                else if(this.strike > 0){ //Si un strike a été fait lors des deux derniers lancers, on double le score de ce lancer
                     this.scoreTotal += nombreDeQuillesAbattues;
                     this.strike--;
                 }
                 if(nombreDeQuillesAbattues == 10){ //Le joueur fait un strike
-                    this.strike = 2;
-                    if(this.tour < 20){
+                    this.strike += 2;
+                    if(this.tour < 19){
                        this.scoreTotal+=nombreDeQuillesAbattues; 
                     }
                 }
